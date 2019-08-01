@@ -145,3 +145,16 @@ def delete_order(request, username):
             "items": Orders.objects.filter(username = username),
         }
         return render(request, "orders.html", context)
+
+@login_required(redirect_field_name='login')
+def manage_orders_view(request, username):
+# Getting relevant data
+    username = request.user.username
+    # Only accessible to staff Users
+    if request.user.is_staff:
+        context ={
+                "user": request.user,
+                "items": Orders.objects.all(),
+        }
+   
+        return render(request, "manage_orders.html", context)
