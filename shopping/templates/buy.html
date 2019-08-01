@@ -1,0 +1,475 @@
+{% extends 'shopping_base.html' %}
+
+{% block content %}
+    <div class="container" style="margin-top: 120px;">
+    {% if type_|stringformat:"s" == 'dinner'%}
+            <div class="row">
+                <!--Contains Item Image-->
+                <div class= "col-md-4">
+                    
+                    <div class="buy-item-image" style="background-image: url( {{item.image.url}} );">
+                        <h4 class="buy-item-name">{{name}} ({{category}})</h4>
+                        <h5 class="buy-item-name">Small: ${{item_size.price_small}}</h5>
+                        <h5 class="buy-item-name">Large: ${{item_size.price_large}}</h5>
+                    </div>
+                </div>
+                <!-- Contains Item Size-->
+                <div class="col-md-4">
+                    <div class="buy-size">
+                        <div style="display: flex; flex-direction: row"> 
+                            <h4 class="buy-item-name">Size </h4>
+                            <h5 class="required-text">required</h5>
+                        </div>
+                        
+                        <form class="form">
+                            <div class="inputGroup">
+                                <input id="radio1" name="radio" type="radio"/>
+                                <label for="radio1">Small</label>
+                            </div>
+                            <div class="inputGroup">
+                                <input id="radio2" name="radio" type="radio"/>
+                                <label for="radio2">Large</label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        
+
+        {% endif %}
+    {% if type_|stringformat:"s" == 'pasta' or type_|stringformat:"s" == 'salads' %}
+            <div class="row">
+                <!--Contains Item Image-->
+                <div class= "col-md-4">
+                    
+                    <div class="buy-item-image" style="background-image: url( {{item.image.url}} );">
+                        <h4 class="buy-item-name">{{name}} ({{category}})</h4>
+                        <h5 class="buy-item-name">Standard: ${{item_size.price}}</h5>
+                    </div>
+                </div>
+
+            </div>
+        
+
+        {% endif %}
+
+        {% if type_|stringformat:"s" == 'sub' %}
+            <div class="row">
+                <!--Contains Item Image-->
+                <div class= "col-md-4">
+                    
+                    <div class="buy-item-image" style="background-image: url( {{item.image.url}} );">
+                        <h4 class="buy-item-name">{{name}} ({{category}})</h4>
+                        <h5 class="buy-item-name">Small: ${{item.price_small}}</h5>
+                        <h5 class="buy-item-name">Large: ${{item.price_large}}</h5>
+                    </div>
+                </div>
+                <!-- Contains Item Size-->
+                <div class="col-md-4">
+                    <div class="buy-size">
+                        <div style="display: flex; flex-direction: row"> 
+                            <h4 class="buy-item-name">Size </h4>
+                            <h5 class="required-text">required</h5>
+                        </div>
+                        
+                        <form class="form">
+                            <div class="inputGroup">
+                                <input id="radio1" name="radio" type="radio"/>
+                                <label for="radio1">Small</label>
+                            </div>
+                            <div class="inputGroup">
+                                <input id="radio2" name="radio" type="radio"/>
+                                <label for="radio2">Large</label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Contains Topping Info-->
+                <div class="col-md-4">
+                    <div class="buy-cols">
+                        <div style="display: flex; flex-direction: row;"> 
+                            <h4 class="buy-item-name">Topping </h4>
+                            <h5 class="optional-text">optional</h5>
+                        </div>
+                        <div class="toppings-list">
+                            <form class="form" id="toppings-form">
+                                {% if item.available_toppings_comma|stringformat:"s" != '' %}
+                                    <div id="sub-toppings">
+
+                                    </div>
+                                {% else %}
+                                    <div>
+                                        <p>No toppings available for this sub</p>
+                                    </div>
+                                {% endif %}
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+
+        {% endif %}
+
+
+        {% if type_|stringformat:"s" == 'pizza'%}
+            <div class="row">
+                    <!--Contains Item Image-->
+                    <div class= "col-md-4">
+                        
+                        <div class="buy-item-image" style="background-image: url( {{item.image.url}} );">
+                            <h4 class="buy-item-name">{{name}} ({{category}})</h4>
+                            <h5 class="buy-item-name">Small: ${{item_size.price_small}}</h5>
+                            <h5 class="buy-item-name">Large: ${{item_size.price_large}}</h5>
+                        </div>
+                    </div>
+                    <!-- Contains Item Size-->
+                    <div class="col-md-4">
+                        <div class="buy-size">
+                            <div style="display: flex; flex-direction: row"> 
+                                <h4 class="buy-item-name">Size </h4>
+                                <h5 class="required-text">required</h5>
+                            </div>
+                            
+                            <form class="form">
+                                <div class="inputGroup">
+                                    <input id="radio1" value="small" name="radio" type="radio"/>
+                                    <label for="radio1">Small</label>
+                                </div>
+                                <div class="inputGroup">
+                                    <input id="radio2" value="large" name="radio" type="radio"/>
+                                    <label for="radio2">Large</label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Contains Topping Info-->
+                    <div class="col-md-4">
+                        <div class="buy-cols">
+                            <div style="display: flex; flex-direction: row;"> 
+                                <h4 class="buy-item-name">Topping </h4>
+                                <h5 class="optional-text">optional</h5>
+                            </div>
+                            <div class="toppings-list">
+                                <form class="form" id="toppings" name="toppings">
+                                    
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% endif %}
+
+        <!-- Action Buttons -->
+
+        <div class="container" id="topp">
+            <div class="action-btns-div">
+                <div class="action-link-nofill">
+                    <a class="nav-link" href=""> <h4 class="action-text"><i class="fas fa-window-close"></i>Cancel</h4></a>
+                </div>
+
+                <div class="action-link-fill">
+                    <button class="nav-link" id="addToCart" href=" "> <h4 class="action-text"><i class="fas fa-shopping-cart"></i>Add to cart</h4></button>
+                </div>
+            <div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', ()=>{
+        var toppings_form = document.getElementById("toppings");
+            if ("{{type_}}" == "pizza"){
+                var toppings_= {{toppings|safe}}
+                // Load all toppings
+                for (var i=0; i<toppings_.length; i++){
+                   
+                    var inputGroup = document.createElement('div')
+                    inputGroup.setAttribute('class', 'inputGroup');
+                    var checkBox = document.createElement("input");
+                    var label = document.createElement("label");
+                    checkBox.type = "checkbox";
+                    checkBox.name ="topping";
+                    checkBox.id=toppings_[i];
+                    inputGroup.appendChild(checkBox);
+                    inputGroup.appendChild(label);
+                    label.setAttribute('for', toppings_[i] );
+                    label.appendChild(document.createTextNode(toppings_[i]));
+                    toppings_form.appendChild(inputGroup);
+                }
+
+     
+            }
+
+            if ("{{type_}}" == "sub"){
+                // Separate the toppings to one list
+                if("{{item.available_toppings_comma}}" != ""){
+                    // There are available toppings to display
+                    var toppings_div = document.getElementById("sub-toppings");
+                    var toppings_string= "{{item.available_toppings_comma}}";
+                    var availableTopings = toppings_string.split(",");
+                    // Loop over available toppings and display each one in a string
+                    for(var i = 0; i<availableTopings.length; i++){
+                        var inputGroup = document.createElement('div')
+                        inputGroup.setAttribute('class', 'inputGroup');
+                        var checkBox = document.createElement("input");
+                        var label = document.createElement("label");
+                        checkBox.type = "checkbox";
+                        checkBox.name ="topping";
+                        checkBox.value= availableTopings[i];
+                        checkBox.id=availableTopings[i];
+                        inputGroup.appendChild(checkBox);
+                        inputGroup.appendChild(label);
+                        label.setAttribute('for', availableTopings[i] );
+                        label.appendChild(document.createTextNode(availableTopings[i]));
+                        toppings_div.appendChild(inputGroup);
+                    }
+                }
+            }
+            $("input[name='topping']").change(function () {
+            var maxAllowed = 3;
+            var cnt = $("input[name='topping']:checked").length;
+            if (cnt > maxAllowed) {
+                $(this).prop("checked", "");
+                alert('Sorry you cannot select more than ' + maxAllowed + ' toppings!!');
+            }
+            });
+
+            function sendDataToServer (name, size, toppings_selected, total_amount){
+                const form_final = document.createElement('form');
+                form_final.method = "POST";
+                form_final.action = "{% url 'cart'%}";
+                // Csrf {% csrf_token %}
+                var csrf = document.createElement('input');
+                csrf.type = 'hidden';
+                csrf.name = 'csrfmiddlewaretoken';
+                csrf.value = '{{ csrf_token }}';
+                form_final.appendChild(csrf);
+                var data_to_send = [name, size, toppings_selected, total_amount]
+                var key=["name", "size", "toppings", "total"]
+                for (i=0; i<data_to_send.length; i++){
+                    var input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = key[i];
+                    input.value = data_to_send[i];
+                    form_final.appendChild(input);
+                }
+                
+                document.getElementById('topp').appendChild(form_final);
+                form_final.submit();
+                alert("New item: "+ name + "$" + total_amount + " added to cart")
+            }
+            var total_amount = 0;
+            var size=""
+            var name = "{{name}}" + " "+ "{{category}}";
+            var toppings_selected="";
+             
+            // When add to cart button is clicked
+            $('#addToCart').click(function(){
+                
+                // Get the current item type_
+                if ("{{type_}}" == "pizza"){
+                    // Ensure what size has been selected
+                    if(document.getElementById('radio1').checked) {
+                        // Small is selected, get small price
+                        
+                        var small_size = parseFloat("{{item_size.price_small|safe}} ", 10);
+                        var topping_cost = 0;
+                        size = "small-" + "$ " + small_size.toString();
+                        // Get topping if any
+                        var cnt = parseFloat($("input[name='topping']:checked").length, 10);
+                        // check if pizza is sicilian or regular
+                        if("{{category}}" == "Regular Pizza"){
+                            // Regular
+                            switch(cnt){
+                                case 1:
+                                    topping_cost = 1
+                                break;
+                                case 2:
+                                    topping_cost = 2.5
+                                break;
+                                case 3:
+                                    topping_cost = 3.5
+                                break;
+                                default:
+                                    topping_cost = 0
+                                break;
+                            }
+                        }
+                        else{
+                            // sicilian
+                            switch(cnt){
+                                case 1:
+                                    topping_cost = 2
+                                break;
+                                case 2:
+                                    topping_cost = 4
+                                break;
+                                case 3:
+                                    topping_cost = 5
+                                break;
+                                default:
+                                    topping_cost = 0
+                                break;
+                            }
+                        }
+                        // Get toppings selected
+                        var all_toppings=[];
+                        $.each($("input[name='topping']:checked"), function(){            
+                            all_toppings.push($(this).attr('id'));
+                            });
+                        toppings_selected = all_toppings.join(", ") +": $" + topping_cost.toString();
+                        // Get total total_amount
+                        total_amount =  parseFloat(total_amount + small_size + topping_cost)
+                        // Send data to django server
+                        sendDataToServer(name, size, toppings_selected, total_amount)
+                        
+
+                    }else if(document.getElementById('radio2').checked) {
+                        // Large is selected
+                        
+                        var large_size = parseFloat("{{item_size.price_small|safe}} ", 10);
+                        var topping_cost = 0;
+                        size = "large-" + "$ " + large_size.toString();
+                        // Get topping if any
+                        var cnt = parseFloat($("input[name='topping']:checked").length, 10);
+                        // regular and sicilian have the same toppings cost here
+                        switch(cnt){
+                            case 1:
+                                topping_cost = 2
+                            break;
+                            case 2:
+                                topping_cost = 4
+                            break;
+                            case 3:
+                                topping_cost = 6
+                            break;
+                            default:
+                                topping_cost = 0
+                            break;
+                        }
+                                                // Get toppings selected
+                        var all_toppings=[];
+                        $.each($("input[name='topping']:checked"), function(){            
+                            all_toppings.push($(this).attr('id'));
+                            });
+                        toppings_selected = all_toppings.join(", ") +": $" + topping_cost.toString();
+                        // Get total total_amount
+                        total_amount =  parseFloat(total_amount + large_size + topping_cost)
+                        sendDataToServer(name, size, toppings_selected, total_amount)
+                    }else{
+                        // No size selected
+                        alert("Please select size");
+                        return false;
+                    }
+                        
+                }
+                if ("{{type_}}" == "sub"){
+                    // Make sure size is selected
+                    if(document.getElementById('radio1').checked) {
+                        // Small clicked
+                        
+                        var small_size = parseFloat("{{item.price_small}}|safe ", 10);
+                        size = "small-" + "$ " + small_size.toString();
+                        // Get toppings
+                        var topping_cost = 0;
+                        var total_cost=0;
+                        var cnt = parseFloat($("input[name='topping']:checked").length, 10);
+                        switch(cnt){
+                            case 1:
+                                topping_cost = 0.50
+                            break;
+                            case 2:
+                                topping_cost = 0.50
+                            break;
+                            case 3:
+                                topping_cost = 0.50
+                            break;
+                            default:
+                                topping_cost = 0
+                            break;
+                        }
+                                                // Get toppings selected
+                        var all_toppings=[];
+                        $.each($("input[name='topping']:checked"), function(){            
+                            all_toppings.push($(this).attr('id'));
+                        });
+                        toppings_selected = all_toppings.join(", ") +": $" + topping_cost.toString();
+                        total_amount =  parseFloat(total_amount + small_size + topping_cost)
+                        sendDataToServer(name, size, toppings_selected, total_amount)
+                    }
+                    else if(document.getElementById('radio2').checked) {
+                        var large_size = parseFloat("{{item.price_large}}|safe ", 10);
+                        size = "large-" + "$ " + large_size.toString();
+                        // Get toppings
+                        var topping_cost = 0;
+                        var total_cost=0;
+                        var cnt = parseFloat($("input[name='topping']:checked").length, 10);
+                        switch(cnt){
+                            case 1:
+                                topping_cost = 0.50
+                            break;
+                            case 2:
+                                topping_cost = 0.50
+                            break;
+                            case 3:
+                                topping_cost = 0.50
+                            break;
+                            default:
+                                topping_cost = 0
+                            break;
+                        }
+                                                // Get toppings selected
+                        var all_toppings=[];
+                        $.each($("input[name='topping']:checked"), function(){            
+                            all_toppings.push($(this).attr('id'));
+                        });
+                        toppings_selected = all_toppings.join(", ") +": $" + topping_cost.toString();
+                        total_amount =  parseFloat(total_amount + large_size + topping_cost)
+                        sendDataToServer(name, size, toppings_selected, total_amount)
+
+                    }
+                    else{
+                        alert("Please select size")
+                    }
+                }
+                if("{{type_}}" == "pasta"){
+                    // Get price
+                     total_amount = parseFloat("{{item_size.price|safe}} ", 10);
+                     size = "Standard";
+                     toppings_selected="N/A";
+                     sendDataToServer(name, size, toppings_selected, total_amount);
+                }
+                if("{{type_}}" == "dinner"){
+                    // Get Size
+                    if(document.getElementById('radio1').checked) {
+                        // Small
+                        small_size = parseFloat("{{item_size.price_small|safe}} ", 10);
+                        size = "small-" + "$ " + small_size.toString();                        
+                        total_amount =  parseFloat(total_amount + small_size )
+                        toppings_selected="N/A";
+                        sendDataToServer(name, size, toppings_selected, total_amount);
+                    }
+                    else if(document.getElementById('radio2').checked){
+                        // Large
+                        large_size = parseFloat("{{item_size.price_large|safe}} ", 10);
+                        size = "large-" + "$ " + large_size.toString();                        
+                        total_amount =  parseFloat(total_amount + large_size )
+                        toppings_selected="N/A";
+                        sendDataToServer(name, size, toppings_selected, total_amount);
+                    }
+                    else{
+                        alert("Please select size");
+                    }
+                     
+                }   
+
+            });
+        });
+    </script>
+
+{% endblock %}

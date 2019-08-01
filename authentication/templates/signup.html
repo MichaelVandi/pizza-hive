@@ -10,21 +10,22 @@
                    
                 </div>
                 <div class="card-body">
-                    <form action="" method="POST">
+                    <form action="{% url 'signup' %}" method="POST">
+                    {% csrf_token %}
                         <!--Full Name View-->
                         <div class="name-div">
                             <div class="input-group form-group" style="padding-right: 5px;">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 </div>
-                                <input name="name" type="text" class="form-control" placeholder="First Name">
+                                <input name="firstname" type="text" class="form-control" placeholder="First Name">
                             </div>
                             <!-- Last Name -->
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 </div>
-                                <input name="name" type="text" class="form-control" placeholder="Last Name">
+                                <input name="lastname" type="text" class="form-control" placeholder="Last Name">
                             </div>
                         </div>
                         <!--Username View-->
@@ -40,7 +41,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                             </div>
-                            <input name="username" type="text" class="form-control" placeholder="email">
+                            <input name="email" type="text" class="form-control" placeholder="email">
                             
                         </div>
                         <!--Password View-->
