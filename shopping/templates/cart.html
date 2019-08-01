@@ -5,6 +5,7 @@
         <div class="container" style="margin-top: 120px;">
         <h3 class="category-header"  style="font-weight: normal">Your Cart</h3>
             <div class="cart-div" id="topp">
+                <div id="confirmDialog"> </div>
                 {% for item in items %}
                 <!-- Div for just one cart item-->
                 <div class="cart-item-div" style="display: flex; flex-direction: row">
@@ -59,42 +60,60 @@
                 // Make sure there are items in cart
                 if({{items|length}} > 0){
                     // Allow
-                    // Get all the necessary details
-                    name = "{{user.first_name}} " + "{{user.last_name}}"
-                    final_total = 0;
-                    item_details =" "
-                    counter = 0;
-                    // Get all details of each item
-                    {% for item in items %}
-                        counter ++;
-                        item_details = item_details + (counter.toString() + ". "+ "Name: {{item.name}}" +" Size: {{item.size}}" + " Toppings: {{item.toppings}}" + " || ")
-                        var item_total = parseFloat("{{item.total|safe}} ", 10);
-                        final_total = parseFloat(final_total + item_total);
-                    {% endfor %}
-                    // Send data to django server
-                    const form_final = document.createElement('form');
-                    form_final.method = "POST";
-                    form_final.action = "{% url 'orders' user.username %}";
-                    // Csrf {% csrf_token %}
-                    var csrf = document.createElement('input');
-                    csrf.type = 'hidden';
-                    csrf.name = 'csrfmiddlewaretoken';
-                    csrf.value = '{{ csrf_token }}';
-                    form_final.appendChild(csrf);
-                    var data_to_send = [name, item_details, final_total]
-                    var key=["name", "items", "total"]
-                    for (i=0; i<data_to_send.length; i++){
-                        var input = document.createElement('input');
-                        input.type = 'hidden';
-                        input.name = key[i];
-                        input.value = data_to_send[i];
-                        form_final.appendChild(input);
-                    }
-                    
-                    document.getElementById('topp').appendChild(form_final);
-                    form_final.submit();
-                    alert("Placing Order...")
+                    // Show Dialog
+                     $("#confirmDialog").dialog({
+                            resizable: true,
+                            modal: true,
+                            title: "Do you want to place order?",
+                            height: 250,
+                            width: 400,
+                            buttons: {
+                            "Yes": function() {
+                                // Get all the necessary details
+                                name = "{{user.first_name}} " + "{{user.last_name}}"
+                                final_total = 0;
+                                item_details =" "
+                                counter = 0;
+                                // Get all details of each item
+                                {% for item in items %}
+                                    counter ++;
+                                    item_details = item_details + (counter.toString() + ". "+ "Name: {{item.name}}" +" Size: {{item.size}}" + " Toppings: {{item.toppings}}" + " || ")
+                                    var item_total = parseFloat("{{item.total|safe}} ", 10);
+                                    final_total = parseFloat(final_total + item_total);
+                                {% endfor %}
+                                // Send data to django server
+                                const form_final = document.createElement('form');
+                                form_final.method = "POST";
+                                form_final.action = "{% url 'orders' user.username %}";
+                                // Csrf {% csrf_token %}
+                                var csrf = document.createElement('input');
+                                csrf.type = 'hidden';
+                                csrf.name = 'csrfmiddlewaretoken';
+                                csrf.value = '{{ csrf_token }}';
+                                form_final.appendChild(csrf);
+                                var data_to_send = [name, item_details, final_total]
+                                var key=["name", "items", "total"]
+                                for (i=0; i<data_to_send.length; i++){
+                                    var input = document.createElement('input');
+                                    input.type = 'hidden';
+                                    input.name = key[i];
+                                    input.value = data_to_send[i];
+                                    form_final.appendChild(input);
+                                }
+                                
+                                document.getElementById('topp').appendChild(form_final);
+                                form_final.submit();
+                                alert("Placing Order...")
 
+                            },
+                            "No": function() {
+                                $(this).dialog('close');
+                                
+                            }
+                            }
+
+                     });
+                    
                 }
                 else{
                     // There are no items, disable button

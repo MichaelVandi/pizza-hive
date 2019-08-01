@@ -206,6 +206,10 @@
     background-color: transparent;
     border: none;
 }
+#confirmDialog{
+    position: absolute;
+    
+}
 
 /* 
   ##Device = Tablets, Ipads (portrait)
