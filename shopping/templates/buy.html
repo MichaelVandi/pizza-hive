@@ -83,6 +83,17 @@
                                 <label for="radio2">Large</label>
                             </div>
                         </form>
+
+                        <form class="form">
+                        <div style="display: flex; flex-direction: row"> 
+                            <h4 class="buy-item-name">Extra Cheese ?</h4>
+                            <h5 class="optional-text">optional</h5>
+                        </div>
+                            <div class="inputGroup">
+                                <input id="extra1" name="radio" type="checkbox"/>
+                                <label for="extra1">Yes</label>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <!-- Contains Topping Info-->
@@ -370,6 +381,13 @@
                 }
                 if ("{{type_}}" == "sub"){
                     // Make sure size is selected
+                    // Extra cheese
+                    var extraCheese= 0;
+                    var extraCheeseText=""
+                    if(document.getElementById('extra1').checked) {
+                        extraCheese = 0.5;
+                        extraCheeseText =" extra cheese +$0.50"
+                    }
                     if(document.getElementById('radio1').checked) {
                         // Small clicked
                         
@@ -398,8 +416,8 @@
                         $.each($("input[name='topping']:checked"), function(){            
                             all_toppings.push($(this).attr('id'));
                         });
-                        toppings_selected = all_toppings.join(", ") +": $" + topping_cost.toString();
-                        total_amount =  parseFloat(total_amount + small_size + topping_cost)
+                        toppings_selected = all_toppings.join(", ") +": $" + topping_cost.toString() + extraCheeseText;
+                        total_amount =  parseFloat(total_amount + small_size + topping_cost + extraCheese)
                         sendDataToServer(name, size, toppings_selected, total_amount)
                     }
                     else if(document.getElementById('radio2').checked) {
@@ -428,8 +446,8 @@
                         $.each($("input[name='topping']:checked"), function(){            
                             all_toppings.push($(this).attr('id'));
                         });
-                        toppings_selected = all_toppings.join(", ") +": $" + topping_cost.toString();
-                        total_amount =  parseFloat(total_amount + large_size + topping_cost)
+                        toppings_selected = all_toppings.join(", ") +": $" + topping_cost.toString()+ extraCheeseText;
+                        total_amount =  parseFloat(total_amount + large_size + topping_cost + extraCheese)
                         sendDataToServer(name, size, toppings_selected, total_amount)
 
                     }

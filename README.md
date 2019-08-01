@@ -61,13 +61,15 @@ _ _Oh they are in a separate model, with foreign keys pointing to the item they 
 
 ### Personal Touches
 
-- A page to manage orders only visible to staff or super users aks admins
+- A page to manage orders only visible to staff or super users aka admins
 - Orders can be deleted from both admin end and customer end
 - Images for every menu item
 - Customers cannot select more than 3 toppings
 - Cart dictionary clears automatically after order is placed
 - Simple UI
 
-_ _Overall this wasn't a very difficult project, all the concepts have been taught in the lessons_ _
-_ _I just spent a little more time making sure that the all requirements were met and the functionalities_ _
-_ _we're logically correct._ _
+_Overall this wasn't a very difficult project, all the concepts have been taught in the lessons_
+_I just spent a little more time making sure that the all requirements were met and the functionalities_ _
+_we're logically correct._
+
+P.S: Sorry I did not create the models in the default orders app. I only noticed that part after I had already created models in the shopping app I created and I did not want to make migrations again. Thanks!
