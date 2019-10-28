@@ -1,8 +1,5 @@
-# Project 3
 
-## Web Programming with Python and JavaScript
-
-## Pizza
+# PizzaHive
 
 _ _Pizza ordering website inspired by [pinnochio's](http://www.pinocchiospizza.net/menu.html) pizza and subs menu_ _
 __My understanding of the menu__
@@ -67,9 +64,3 @@ _ _Oh they are in a separate model, with foreign keys pointing to the item they 
 - Customers cannot select more than 3 toppings
 - Cart dictionary clears automatically after order is placed
 - Simple UI
-
-_Overall this wasn't a very difficult project, all the concepts have been taught in the lessons_
-_I just spent a little more time making sure that the all requirements were met and the functionalities_ _
-_we're logically correct._
-
-P.S: Sorry I did not create the models in the default orders app. I only noticed that part after I had already created models in the shopping app I created and I did not want to make migrations again. Thanks!
